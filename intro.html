@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escape Game – Introduction</title>
+<style>
+:root{--bg1:#060606;--bg2:#0d0b0c;--card:#0f0e10;--accent:#b44f3a;--gold:#caa45a;--muted:#d7d0c2}
+html,body{height:100%;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,Arial}
+body{background: radial-gradient(1200px 600px at 10% 10%, rgba(60,40,30,0.12), transparent), linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%); color:var(--muted); display:flex;align-items:center;justify-content:center;padding:24px}
+.frame{width:100%; max-width:800px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 2px solid rgba(202,164,90,0.12); box-shadow: 0 12px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02); border-radius:12px; padding:28px; text-align:center;}
+.crest{width:78px;height:78px;border-radius:8px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));border:1px solid rgba(202,164,90,0.12); display:flex;align-items:center;justify-content:center;color:var(--gold); font-weight:700;font-size:24px; margin:0 auto 12px; box-shadow:0 6px 18px rgba(0,0,0,0.6);}
+h1{margin:0;font-size:2rem;color:var(--gold);letter-spacing:1px;}
+p.lead{margin:16px 0;line-height:1.45;}
+.btn{display:inline-block;padding:12px 20px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;cursor:pointer;font-weight:700;font-size:1.1rem;margin-top:18px;}
+footer{margin-top:18px;color:rgba(215,208,194,0.6);font-size:0.85rem;text-align:center;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="crest">MM</div>
+  <h1>Welcome to the Cursed Manor</h1>
+  <p class="lead">
+    You are about to enter a series of challenging riddles.<br>
+    Solve each one carefully to obtain a digit for the final 4-digit code.<br>
+    <strong>Make sure to remember all digits!</strong><br>
+    Each page will give you one or two digits, and only by combining them correctly can you escape.
+  </p>
+  <a href="page1.html" class="btn">Start the Game →</a>
+  <footer>
+    <small>Escape Game Prototype – Good luck, brave adventurer!</small>
+  </footer>
+</div>
+</body>
+</html>

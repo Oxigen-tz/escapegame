@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escape Game – Page 2</title>
+<style>
+:root{--bg1:#060606;--bg2:#0d0b0c;--card:#0f0e10;--accent:#b44f3a;--gold:#caa45a;--muted:#d7d0c2}
+html,body{height:100%;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,Arial}
+body{background: radial-gradient(1200px 600px at 10% 10%, rgba(60,40,30,0.12), transparent), linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%); color:var(--muted); display:flex;align-items:center;justify-content:center;padding:24px}
+.frame{width:100%; max-width:900px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 2px solid rgba(202,164,90,0.12); box-shadow: 0 12px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02); border-radius:12px; padding:28px; display:flex; gap:20px;}
+.panel{background:var(--card); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); flex:1;}
+.right{width:160px; display:flex;flex-direction:column;align-items:center; justify-content:center; gap:12px;}
+h1{margin:0;font-size:1.6rem;color:var(--gold);letter-spacing:1px;text-align:center;}
+h2{color:var(--gold); margin-bottom:8px;}
+input{padding:6px; background:#222; color:#fff; border:1px solid #8b6b31; width:100%;}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;cursor:pointer;font-weight:700;}
+.tick{color:#8ef08e;margin-left:6px;font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="panel">
+    <h1>Page 2 – Solve the Riddles</h1>
+    <p>Solve each riddle to reveal the second digit of the code.</p>
+
+    <h3>1) I fall and can hurt. What am I?</h3>
+    <input id="r1" placeholder="Answer"><span id="t1" class="tick"></span>
+
+    <h3>2) I disappear when you try to touch me. What am I?</h3>
+    <input id="r2" placeholder="Answer"><span id="t2" class="tick"></span>
+
+    <h3>3) I have hands but I do not prick. What am I?</h3>
+    <input id="r3" placeholder="Answer"><span id="t3" class="tick"></span>
+
+    <h3>4) I can light up without having light. What am I?</h3>
+    <input id="r4" placeholder="Answer"><span id="t4" class="tick"></span>
+  </div>
+
+  <div class="right">
+    <h2>Digit</h2>
+    <h1 id="digit">—</h1>
+    <a href="page3.html" class="btn">→ Next Page</a>
+  </div>
+</div>
+
+<script>
+const answers = {r1:"rain", r2:"shadow", r3:"clock", r4:"idea"};
+
+function check2(){
+  let correct=true;
+  for(let i=1;i<=4;i++){
+    const val=document.getElementById('r'+i).value.trim().toLowerCase();
+    if(val===answers['r'+i]){
+      document.getElementById('t'+i).textContent="✔";
+      localStorage.setItem('p2_r'+i, val);
+    } else {
+      correct=false;
+      document.getElementById('t'+i).textContent="";
+      localStorage.removeItem('p2_r'+i);
+    }
+  }
+  if(correct){
+    const digit="7";
+    document.getElementById('digit').textContent=digit;
+    localStorage.setItem("d2", digit);
+  }
+}
+
+document.querySelectorAll("input").forEach(i=>i.addEventListener("input", check2));
+</script>
+</body>
+</html>

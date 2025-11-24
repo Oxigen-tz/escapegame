@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escape Game – Verify Code</title>
+<style>
+:root{--bg1:#060606;--bg2:#0d0b0c;--card:#0f0e10;--accent:#b44f3a;--gold:#caa45a;--muted:#d7d0c2}
+html,body{height:100%;margin:0;padding:0;font-family:system-ui,Segoe UI,Roboto,Arial}
+body{background: radial-gradient(1200px 600px at 10% 10%, rgba(60,40,30,0.12), transparent), linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%); color:var(--muted); display:flex;align-items:center;justify-content:center;padding:24px}
+.frame{width:100%; max-width:600px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 2px solid rgba(202,164,90,0.12); box-shadow: 0 12px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02); border-radius:12px; padding:28px; text-align:center;}
+h1{color:var(--gold);}
+input{padding:8px; background:#222; color:#fff; border:1px solid #8b6b31; width:140px; text-align:center; font-size:1.2rem; border-radius:6px;}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;cursor:pointer;font-weight:700;margin-top:10px;}
+.tick{color:#8ef08e;font-weight:bold;font-size:1.5rem;margin-left:6px;}
+.digit-box{display:flex;justify-content:center;gap:12px;margin-top:16px;}
+.digit{width:50px;height:50px;border-radius:8px;background:#0b0b0c;display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:1px solid rgba(255,255,255,0.05);}
+.success{color:#8ef08e;font-weight:bold;font-size:1.2rem;}
+.fail{color:#f66;font-weight:bold;font-size:1.1rem;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <h1>Verify Your Code</h1>
+  <p>Enter the 4-digit code you collected from previous pages:</p>
+  <input id="final" maxlength="4" placeholder="____">
+  <br>
+  <button class="btn" id="check">Check</button>
+
+  <div class="digit-box">
+    <div class="digit" id="d1">—</div>
+    <div class="digit" id="d2">—</div>
+    <div class="digit" id="d3">—</div>
+    <div class="digit" id="d4">—</div>
+  </div>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+// get stored digits safely
+function getDigit(key){return localStorage.getItem(key)||'';}
+function updateDisplay(){
+  const d1=getDigit('d1'), d2=getDigit('d2'), d3=getDigit('d3'), d4=getDigit('d4');
+  document.getElementById('d1').textContent=d1?d1+' ✔':'—';
+  document.getElementById('d2').textContent=d2?d2+' ✔':'—';
+  document.getElementById('d3').textContent=d3?d3+' ✔':'—';
+  document.getElementById('d4').textContent=d4?d4+' ✔':'—';
+}
+
+updateDisplay();
+
+document.getElementById('check').addEventListener('click',()=>{
+  const d1=getDigit('d1'), d2=getDigit('d2'), d3=getDigit('d3'), d4=getDigit('d4');
+  const code=document.getElementById('final').value.trim();
+
+  const missing=[];
+  if(!d1) missing.push("Page 1");
+  if(!d2) missing.push("Page 2");
+  if(!d3 || !d4) missing.push("Page 3");
+
+  if(missing.length>0){
+    document.getElementById('msg').textContent="Some digits are missing: "+missing.join(", ");
+    document.getElementById('msg').className="fail";
+    return;
+  }
+
+  if(code === d1+d2+d3+d4){
+    document.getElementById('msg').textContent="✅ Correct! You have escaped!";
+    document.getElementById('msg').className="success";
+  } else {
+    document.getElementById('msg').textContent="❌ Wrong code. Try again!";
+    document.getElementById('msg').className="fail";
+  }
+});
+</script>
+</body>
+</html>
