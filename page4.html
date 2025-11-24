@@ -43,9 +43,9 @@ function getDigit(key){return localStorage.getItem(key)||'';}
 function updateDisplay(){
   const d1=getDigit('d1'), d2=getDigit('d2'), d3=getDigit('d3'), d4=getDigit('d4');
   document.getElementById('d1').textContent=d1?' ✔':'—';
-  document.getElementById('d2').textContent=d2?d2+' ✔':'—';
-  document.getElementById('d3').textContent=d3?d3+' ✔':'—';
-  document.getElementById('d4').textContent=d4?d4+' ✔':'—';
+  document.getElementById('d2').textContent=d2?' ✔':'—';
+  document.getElementById('d3').textContent=d3?' ✔':'—';
+  document.getElementById('d4').textContent=d4?' ✔':'—';
 }
 
 updateDisplay();
@@ -76,4 +76,5 @@ document.getElementById('check').addEventListener('click',()=>{
 </script>
 </body>
 </html>
+
 
